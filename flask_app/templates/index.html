@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask Sentence Comparison</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Sentence Comparison</h1>
+    <div class="container">
+        <div class="block">
+            <h2>Original</h2>
+            <!-- Shows the original sentence -->
+            <pre id="original-sentence"></pre>
+            <div class="button-row">
+              <button onclick="useOriginal()">Use Original Instead</button>
+            </div>
+            
+        </div>
+        <div class="block">
+            <h2>Edited</h2>
+            <!-- Editable sentence area rendered by JS -->
+            <pre id="editable-sentence"></pre>
+            <div id="feedback-message" style="color: green; font-weight: bold; display: none; margin-top: 10px;"></div>
+
+            <div class="button-row">
+                <button onclick="markGood()">Mark as Good</button>
+                <button onclick="editSentence()">Edit Sentence</button>
+                <button onclick="undoRedact()">Undo Redaction</button>
+                <button onclick="loadNextSentence()">Next Sentence</button>
+            </div>
+
+            <div id="edit-box" style="margin-top: 10px; display: none;">
+                <textarea id="sentence-edit" rows="4" style="width: 100%;"></textarea>
+                <button onclick="saveEdit()">Save Edit</button>
+            </div>
+            <div id="debug-info" style="margin-top: 15px; font-size: 0.9em; color: #444;">
+              <strong>Debug Info:</strong>
+              <div>Sentence ID: <span id="debug-id"></span></div>
+              <div>Note ID: <span id="debug-note-id"></span></div>
+              <div>Sentence Index: <span id="debug-index"></span></div>
+          </div>
+          
+        </div>
+    </div>
+
+    <!-- Hidden div to store current sentence ID -->
+    <div id="state" data-sentence-id="" style="display: none;"></div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
